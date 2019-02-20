@@ -18,7 +18,7 @@ bool Connect(int n) {
 
 bool Possible() {
     for (int i = 1; i < N; i++) {
-         if (!Connect(i)) return false;
+        if (!Connect(i)) return false;
     }
     return true;
 }
@@ -29,12 +29,13 @@ void Solve(int count, int w, int h) {
         ret = count;
         return;
     }
-    if (h > H || count == 3) return;
-     
+    if ((h > H) || count == 3) return;
+
     int i = w;
-    
+
     Solve(count, 1, h + 1);
-    while (i < N) { 
+    while (i < N) {
+
         if (adj[h][i]) {
             i += 2;
             continue;
@@ -46,18 +47,17 @@ void Solve(int count, int w, int h) {
         }
 
         adj[h][i] = true;
-
         Solve(count + 1, i + 2, h);
-
         adj[h][i] = false;
+        
         i++;
-    }       
+    }
 }
 
 int main() {
     ios::sync_with_stdio(false);
     cin.tie(NULL);
-
+    
     cin >> N >> M >> H;
     
     for (int i = 0; i < M; i++) {
